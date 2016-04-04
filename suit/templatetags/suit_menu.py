@@ -1,7 +1,8 @@
 from django import template
+
 from django.contrib import admin
 from django.contrib.admin import AdminSite
-from django.core.handlers.wsgi import WSGIRequest
+from django.http import HttpRequest
 from django.core.urlresolvers import reverse, resolve
 
 try:
@@ -14,6 +15,7 @@ import re
 
 import warnings
 from suit.config import get_config
+from suit.menu import MenuManager
 
 register = template.Library()
 
@@ -23,7 +25,7 @@ def get_menu(context, request):
     """
     :type request: WSGIRequest
     """
-    if not isinstance(request, WSGIRequest):
+    if not isinstance(request, HttpRequest):
         return None
 
     # Try to get app list
