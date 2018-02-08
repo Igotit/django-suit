@@ -23,7 +23,7 @@ register = template.Library()
 @register.assignment_tag(takes_context=True)
 def get_menu(context, request):
     """
-    :type request: WSGIRequest
+    :type request: HttpRequest
     """
     if not isinstance(request, HttpRequest):
         return None
